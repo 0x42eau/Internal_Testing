@@ -1,6 +1,8 @@
 #This is a list of network based pentest commands to help enumerate and exploit a domain.
  # also visit https://orange-cyberdefense.github.io/ocd-mindmaps/img/pentest_ad_dark_2023_02.svg
 
+#find hosts
+	nmap -p135,445,22,80 -T2 -Pn -n --max-retries=1 --max-rtt-timeout=500ms -vvv -iL scope.txt -oA online-hosts
 
 #Find DCs
 	nslookup domain.com
