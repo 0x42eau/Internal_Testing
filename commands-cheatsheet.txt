@@ -4,6 +4,8 @@
 #find hosts
 	nmap -p135,445,22,80 -T4 -Pn -n --max-retries=1 --max-rtt-timeout=500ms -vvv -iL scope.txt -oA online-hosts
 	masscan -p22,80,135,445 10.0.0.0/8 --mine-rate 10000 --max-rate 15000 -oG masscan
+#scan hosts
+	nmap -p- -A -T4 --min-rate=10000 --max-rate=25000 --reason -Pn -iL ips.txt -oA allports
 
 #Find DCs
 	nslookup domain.com
