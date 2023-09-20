@@ -2,14 +2,16 @@
  # also visit https://orange-cyberdefense.github.io/ocd-mindmaps/img/pentest_ad_dark_2023_02.svg
 
 #find hosts
-	nmap -p135,445,22,80 -T4 -Pn -n --max-retries=1 --max-rtt-timeout=500ms -vvv -iL scope.txt -oA online-hosts
-	masscan -p22,80,135,445 10.0.0.0/8 --mine-rate 10000 --max-rate 15000 -oG masscan
+	nmap -p135,139,445,22,80 -T4 -Pn -n --max-retries=1 --max-rtt-timeout=500ms -vvv -iL scope.txt -oA online-hosts
+	masscan -p22,80,135,139,445 10.0.0.0/8 --mine-rate 10000 --max-rate 15000 -oG masscan
 #scan hosts
 	nmap -p- -A -T4 --min-rate=10000 --max-rate=25000 --reason -Pn -iL ips.txt -oA allports
 
 #Find DCs
 	nslookup domain.com
 	nslookup -type=srv _ldap._tcp.dc._msdcs.domain.com
+		Try to zone transfer
+	dig @dc-ip domain.com -t AXFR
 
 #Using crackmap (6.0+) to enumerate online hosts
 	crackmapexec smb scope.txt --log smb-online.txt
