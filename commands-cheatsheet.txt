@@ -82,7 +82,11 @@
 
 	silver tickets
 
-	
+# searching for stuff
+	grep -lir password /*
+		-l : only files
+		-i : case insenstivie
+		-r : recurse
 
 
 
