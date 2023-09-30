@@ -48,7 +48,12 @@
 
 
 #Sprays
-	spraygun
+	spraygun (cme
+	CME
+		cme smb dc-ip -d domain.com -u users.txt -p pass
+	Hydra
+		hydra -C creds.txt -dc01.domain.local smb2 -m workgroup:{domain.com}
+		
 
 
 #Got creds?
