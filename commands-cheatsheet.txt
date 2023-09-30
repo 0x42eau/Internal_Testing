@@ -58,6 +58,9 @@
 
 #Got creds?
 
+#Get full list of users
+	GetADUsers.py domain.com/user:password -dc-ip 10.10.10.10 -all | tee -a adusers.txt
+		https://github.com/fortra/impacket/blob/master/examples/GetADUsers.py
 
 
 #Explolits
