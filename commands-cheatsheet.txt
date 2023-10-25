@@ -47,7 +47,10 @@
 		this has a lot of functionality, but default will attempt to create a domain admin.
 		https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/
 
+	python3 Pcredz -i eth0 -v
+		https://github.com/lgandx/PCredz
 
+	wireshark (capture filter = port 137 or port 5353 or port 5355)
 
 #Sprays
 	spraygun (cme
